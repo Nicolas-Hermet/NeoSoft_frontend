@@ -4,16 +4,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { TodosComponent } from './todos/todos.component';
+import { MatCardModule } from '@angular/material/card';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatCardModule
       ],
       declarations: [
-        AppComponent, MenuComponent
+        AppComponent, MenuComponent, TodosComponent
       ],
     }).compileComponents();
   }));
@@ -47,6 +50,15 @@ describe('AppComponent', () => {
     const element = fixture.debugElement;
     expect(element.query(By.directive(MenuComponent)))
       .withContext('You probably forgot to add MenuComponent to the AppComponent template')
+      .not.toBeNull();
+  });
+
+  it('should use the todos component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const element = fixture.debugElement;
+    expect(element.query(By.directive(TodosComponent)))
+      .withContext('You probably forgot to add TodosComponent to the AppComponent template')
       .not.toBeNull();
   });
 });
