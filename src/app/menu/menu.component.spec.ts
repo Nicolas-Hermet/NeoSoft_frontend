@@ -24,4 +24,13 @@ describe('MenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render root-link in a a tag', () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('a').textContent)
+      .withContext('You should have a `a` with the text DisrupToDo')
+      .toContain('DisrupToDo');
+  });
+
 });
