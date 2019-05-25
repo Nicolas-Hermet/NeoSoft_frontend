@@ -9,8 +9,8 @@ import { TodoModel } from '../models/todo.model';
 export class TodosComponent implements OnInit {
 
   todos: Array<TodoModel> = [
-    {title: 'shopping list', description: 'Milk'},
-    {title: 'Technical test', description: 'spend some time each day to make things happen !'}
+    {title: 'shopping list', state: true, description: 'Milk'},
+    {title: 'Technical test', state: false, description: 'spend some time each day to make things happen !'}
   ];
 
   constructor() { }

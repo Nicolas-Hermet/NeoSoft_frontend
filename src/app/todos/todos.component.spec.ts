@@ -25,7 +25,15 @@ describe('TodosComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display every todo title', () => {
+  it('should have at minimal 2 attribute : state and title', () => {
+    fixture.detectChanges();
+    const todos = fixture.componentInstance.todos;
+    expect(Object.keys(todos[0]).length).toBeGreaterThan(2);
+    expect(todos[0].hasOwnProperty('state')).toBeDefined();
+    expect(todos[0].hasOwnProperty('title')).toBeDefined();
+  });
+
+  it('should contain every todo title', () => {
     fixture.detectChanges();
     const todos = fixture.componentInstance.todos;
     expect(todos).not.toBeNull();
@@ -34,7 +42,7 @@ describe('TodosComponent', () => {
     expect(todos[1].title).toBe('Technical test');
   });
 
-  it('should display every todo description', () => {
+  it('should contain every todo description', () => {
     fixture.detectChanges();
     const todos = fixture.componentInstance.todos;
     expect(todos[0].description).toBe('Milk');
