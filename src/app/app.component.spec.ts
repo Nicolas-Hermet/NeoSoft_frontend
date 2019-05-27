@@ -6,6 +6,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TodosComponent } from './todos/todos.component';
 import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         MatToolbarModule,
-        MatCardModule
+        MatCardModule,
+        HttpClientModule
       ],
       declarations: [
         AppComponent, MenuComponent, TodosComponent
