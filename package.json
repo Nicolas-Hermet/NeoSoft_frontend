@@ -32,18 +32,11 @@
     "@angular/cli": "~7.3.3",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
-<<<<<<< HEAD
     "@types/jasmine": "3.3.8",
     "@types/jasminewd2": "2.0.6",
     "@types/node": "~8.9.4",
     "angular-cli-ghpages": "^0.5.3",
     "angular-in-memory-web-api": "^0.8.0",
-=======
-    "@types/jasmine": "~2.8.8",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
-    "angular-cli-ghpages": "^0.5.3",
->>>>>>> master
     "codelyzer": "~4.5.0",
     "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "4.2.1",
