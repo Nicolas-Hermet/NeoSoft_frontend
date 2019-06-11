@@ -1,9 +1,9 @@
 <div class="container">
-  <mat-card class="todo" *ngFor="let todo of todos; index as i">
+  <mat-card class="todo" *ngFor="let todo of todos">
     <mat-card-header>
       <mat-card-title>
-        {{ todo.title }}  -  {{ todo.isDone }}  -  {{ i }}
-        <button (click)="switch(i)">mark done</button>
+        {{ todo.title }}
+        <span *ngIf="todo.isDone"> -  Done</span>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>

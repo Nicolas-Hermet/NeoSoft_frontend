@@ -18,7 +18,6 @@ import { TodosService } from '../services/todos.service';
 export class ToDoEffects {
   constructor(private http: HttpClient, private action$: Actions, private todosService: TodosService) {}
 
-  private ApiURL = 'https://localhost:44360/api/ToDo';
   @Effect()
   GetToDos$: Observable<Action> = this.action$.pipe(
     ofType<GetToDo>(GET_TODO),
