@@ -12,6 +12,12 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { StoreModule } from '@ngrx/store';
+import { ToDoReducer } from './redux/todo.reducer';
+import { FormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { ToDoEffects } from './redux/todo.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(DataService)
+    InMemoryWebApiModule.forRoot(DataService),
+    StoreModule.forRoot({ todos: ToDoReducer }),
+    EffectsModule.forRoot([ToDoEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
