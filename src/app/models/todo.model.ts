@@ -1,5 +1,5 @@
 export class TodoModel {
   title: string;
-  state: boolean;
+  isDone: boolean;
   description: string;
 }

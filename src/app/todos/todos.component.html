@@ -1,7 +1,10 @@
 <div class="container">
   <mat-card class="todo" *ngFor="let todo of todos">
     <mat-card-header>
-      <mat-card-title>{{ todo.title }}</mat-card-title>
+      <mat-card-title>
+        {{ todo.title }}
+        <span *ngIf="todo.isDone"> -  Done</span>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <p>
