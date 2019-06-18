@@ -16,8 +16,21 @@ export function ToDoReducer(state: ToDoState = initialState,
       case ToDoActions.GET_TODO_SUCCESS:
           return ({
               ...state,
-              todos: state.todos.concat((action as ActionWithPayload<TodoModel[]>).payload),
+              todos: state.todos.concat((action as ActionWithPayload<TodoModel[]>).payload)
           });
+
+      case ToDoActions.CHANGE_TODO:
+          const actionWithPayload = (action as ActionWithPayload<TodoModel>).payload;
+          return ({ ...state,
+            todos: state.todos.map((todo: TodoModel) =>
+              todo.id === actionWithPayload.id ? { ...todo, isDone: !todo.isDone } : todo
+            ) });
+
+
+      case ToDoActions.CHANGE_TODO_SUCCESS:
+          return ({
+            ...state
+        });
 
       case ToDoActions.GET_TODO_ERROR:
           return ({
