@@ -24,10 +24,10 @@ export class ToDoEffects {
   @Effect()
   GetToDos$: Observable<Action> = this.action$.pipe(
     ofType<GetToDo>(GET_TODO),
-    mergeMap(() =>
+    mergeMap((action) =>
       this.todosService.getTodos().pipe(
         map(data => {
-          console.log('Effects Web Api call: ', data);
+          console.log('Effects GetTodo : ', data);
           return new GetToDoSuccess(data as TodoModel[]);
         }),
         catchError(error => {
@@ -45,8 +45,8 @@ export class ToDoEffects {
       mergeMap(action =>
         this.todosService.changeTodo(action.payload)
           .pipe(
-            map(data => {
-              console.log('Effects Post Web Api call success: ', action.payload);
+            map(() => {
+              console.log('Effects PutTodo payload : ', action.payload);
               return new ChangeToDoSuccess(action.payload as TodoModel);
             }),
             catchError(error => {
