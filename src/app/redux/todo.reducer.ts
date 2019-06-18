@@ -9,30 +9,28 @@ const initialState = initializeState();
 export function ToDoReducer(state: ToDoState = initialState,
                             action: Action) {
 
-  let actionWithPayload: Array<any>;
 
   switch (action.type) {
       case ToDoActions.GET_TODO:
         return { ...state };
 
         case ToDoActions.GET_TODO_SUCCESS:
-          actionWithPayload = (action as ActionWithPayload<TodoModel[]>).payload;
-          if (actionWithPayload.length >= state.todos.length) {
+          const getTodoSuccessPayload = (action as ActionWithPayload<TodoModel[]>).payload;
+          if (getTodoSuccessPayload.length >= state.todos.length) {
             return ({
                 ...state,
-                todos: state.todos.concat((action as ActionWithPayload<TodoModel[]>).payload)
+                todos: state.todos.concat(getTodoSuccessPayload)
             });
           } else {
-            state.todos.map((x) => x.id === actionWithPayload.id ? x =  actionWithPayload : x);
             return  ({
               ...state
             });
           }
 
       case ToDoActions.CHANGE_TODO:
-          actionWithPayload = (action as ActionWithPayload<TodoModel>).payload;
+          const changeTodoPayload = (action as ActionWithPayload<TodoModel>).payload;
           state.todos.map((todo: TodoModel) =>
-              todo.id === actionWithPayload.id ? { ...todo, isDone: !todo.isDone } : todo
+              todo.id === changeTodoPayload.id ? { ...todo, isDone: !todo.isDone } : todo
             );
           return ({ ...state });
 
