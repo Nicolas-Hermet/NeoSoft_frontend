@@ -6,11 +6,14 @@ import { of, Observable } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { TodoModel } from '../models/todo.model';
 import {
+  ChangeToDo,
+  CHANGE_TODO,
   GetToDo,
   GetToDoSuccess,
   GET_TODO,
   GET_TODO_ERROR,
-  ToDoError
+  ToDoError,
+  ChangeToDoSuccess
 } from './todo.actions';
 import { TodosService } from '../services/todos.service';
 
@@ -21,10 +24,10 @@ export class ToDoEffects {
   @Effect()
   GetToDos$: Observable<Action> = this.action$.pipe(
     ofType<GetToDo>(GET_TODO),
-    mergeMap(() =>
+    mergeMap((action) =>
       this.todosService.getTodos().pipe(
         map(data => {
-          console.log('Effects Web Api call: ', data);
+          console.log('Effects GetTodo : ', data);
           return new GetToDoSuccess(data as TodoModel[]);
         }),
         catchError(error => {
@@ -35,4 +38,22 @@ export class ToDoEffects {
     )
   );
 
+  @Effect()
+  ChangeTodo$: Observable<Action> = this.action$
+    .pipe(
+      ofType<ChangeToDo>(CHANGE_TODO),
+      mergeMap(action =>
+        this.todosService.changeTodo(action.payload)
+          .pipe(
+            map(() => {
+              console.log('Effects PutTodo payload : ', action.payload);
+              return new ChangeToDoSuccess(action.payload as TodoModel);
+            }),
+            catchError(error => {
+              console.error('Http Call Error: ', error);
+              return of(new ToDoError(GET_TODO_ERROR, error.message));
+            })
+          )
+      )
+    );
 }
