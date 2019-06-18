@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { Store, select, Action } from '@ngrx/store';
 import { ToDoState } from '../redux/todo.state';
 import ActionWithPayload from '../redux/ActionWithPayload';
-import { GET_TODO } from '../redux/todo.actions';
+import { CHANGE_TODO, GET_TODO } from '../redux/todo.actions';
 
 @Component({
   selector: 'app-todos',
@@ -22,9 +22,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   toDoState$: Observable<ToDoState>;
   toDoSubscription: Subscription;
-  @Input() title: string;
-  @Input() done = false;
-  description: string;
+  @Input() done: boolean;
 
   constructor(private store: Store<ToDoState>) {
   }
@@ -39,6 +37,22 @@ export class TodosComponent implements OnInit, OnDestroy {
       this.todos = x.todos;
     })).subscribe();
     this.store.dispatch(getToDoAction);
+  }
+
+
+  changeTodo(i: number) {
+    const todo = this.todos[i];
+    todo.isDone = !this.todos[i].isDone;
+    const todoAction: ActionWithPayload<TodoModel> = {
+      type: CHANGE_TODO,
+      payload:  {
+        id: todo.id,
+        title: todo.title,
+        isDone: todo.isDone,
+        description: todo.description
+      }
+    };
+    this.store.dispatch(todoAction);
   }
 
   ngOnDestroy() {

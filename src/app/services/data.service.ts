@@ -11,8 +11,8 @@ export class DataService implements InMemoryDbService {
 
   createDb() {
     const todos: Array<TodoModel> = [
-      {title: 'shopping list', isDone: true, description: 'Milk'},
-      {title: 'Technical test', isDone: false, description: 'spend some time each day to make things happen !'}
+      {id: 1, title: 'shopping list', isDone: true, description: 'Milk'},
+      {id: 2, title: 'Technical test', isDone: false, description: 'spend some time each day to make things happen !'}
     ];
 
     return { todos };
