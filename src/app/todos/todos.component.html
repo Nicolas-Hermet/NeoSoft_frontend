@@ -1,9 +1,13 @@
 <div class="container">
-  <mat-card class="todo" *ngFor="let todo of todos">
+  <mat-card class="todo" *ngFor="let todo of todos; index as i">
     <mat-card-header>
       <mat-card-title>
-        {{ todo.title }}
-        <span *ngIf="todo.isDone"> -  Done</span>
+        {{ todo.title }} - {{ todo.isDone }}
+
+        <button (click)="changeTodo(i)">
+          <span *ngIf="todo.isDone"> Mark as Undone </span>
+          <span *ngIf="!todo.isDone"> Mark as Done </span>
+        </button>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
