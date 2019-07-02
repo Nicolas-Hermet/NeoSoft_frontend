@@ -18,11 +18,13 @@ import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { ToDoEffects } from './redux/todo.effects';
 
+import { TodoComponent } from './todos/todo/todo.component';
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    TodosComponent
+    TodosComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
