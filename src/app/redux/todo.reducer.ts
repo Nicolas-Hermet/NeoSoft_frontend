@@ -16,7 +16,7 @@ export function ToDoReducer(state: ToDoState = initialState,
 
         case ToDoActions.GET_TODO_SUCCESS:
           const getTodoSuccessPayload = (action as ActionWithPayload<TodoModel[]>).payload;
-          if (getTodoSuccessPayload.length >= state.todos.length) {
+          if (getTodoSuccessPayload.length > state.todos.length) {
             return ({
                 ...state,
                 todos: state.todos.concat(getTodoSuccessPayload)
