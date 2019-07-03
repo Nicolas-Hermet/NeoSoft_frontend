@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card class="todo" *ngFor="let todo of todos; index as i" [ngClass]="{'done': todo.isDone, 'bottom': todo.isDone}">
     <mat-card-header>
-      <mat-card-title>
+      <mat-card-title style="cursor: pointer;">
         <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(i)" labelPosition='after'></mat-checkbox>
         <span [routerLink]="['/todo', todo.id]">&nbsp;{{ todo.title }}&nbsp;</span>
       </mat-card-title>
