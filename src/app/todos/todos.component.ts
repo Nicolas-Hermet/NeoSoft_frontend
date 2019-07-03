@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { TodoModel } from '../models/todo.model';
-import { TodosService } from '../services/todos.service';
 
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,14 +21,13 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   toDoState$: Observable<ToDoState>;
   toDoSubscription: Subscription;
-  @Input() done: boolean;
+
 
   constructor(private store: Store<ToDoState>) {
   }
 
   ngOnInit() {
     this.toDoState$ = this.store.pipe(select('todos'));
-
     const getToDoAction: Action = {
       type: GET_TODO
     };
