@@ -1,18 +1,10 @@
 <div class="container">
   <mat-card class="todo" *ngFor="let todo of todos; index as i" [ngClass]="{'done': todo.isDone, 'bottom': todo.isDone}">
     <mat-card-header>
-      <mat-card-title>
-        <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(i)" labelPosition='after'>
-            <span [ngClass]="{ 'done': todo.isDone }" (change)="changeTodo(i)" aria-label="toggle todo">
-                &nbsp;{{ todo.title }}&nbsp;
-              </span>
-        </mat-checkbox>
+      <mat-card-title style="cursor: pointer;">
+        <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(i)" labelPosition='after'></mat-checkbox>
+        <span [routerLink]="['/todo', todo.id]">&nbsp;{{ todo.title }}&nbsp;</span>
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <p>
-        {{ todo.description }}
-      </p>
-    </mat-card-content>
   </mat-card>
 </div>

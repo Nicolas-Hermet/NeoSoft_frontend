@@ -18,11 +18,14 @@ import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { ToDoEffects } from './redux/todo.effects';
 
+import { routerReducer } from '@ngrx/router-store';
+import { TodoComponent } from './todos/todo/todo.component';
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    TodosComponent
+    TodosComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { ToDoEffects } from './redux/todo.effects';
     MaterialModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(DataService),
-    StoreModule.forRoot({ todos: ToDoReducer }),
+    StoreModule.forRoot({ todos: ToDoReducer, router: routerReducer }),
     EffectsModule.forRoot([ToDoEffects])
   ],
   providers: [],
