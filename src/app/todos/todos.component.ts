@@ -22,7 +22,6 @@ export class TodosComponent implements OnInit, OnDestroy {
   toDoState$: Observable<ToDoState>;
   toDoSubscription: Subscription;
 
-
   constructor(private store: Store<ToDoState>) {
   }
 
