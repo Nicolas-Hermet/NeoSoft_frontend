@@ -1,3 +1,14 @@
-<p>
-  todo works!
-</p>
+<div class="container">
+  <mat-card class="todo">
+    <mat-card-header>
+      <mat-card-title>
+        <span>{{ this.todo?.title }}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ this.todo?.description }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
