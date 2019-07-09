@@ -22,4 +22,8 @@ export class TodosService {
     return this.httpClient.post<TodoModel>(`${this.SERVER_URL + 'todos'}/${todo.id}`, todo);
   }
 
+  createTodo(todo: TodoModel) {
+    return this.httpClient.post<TodoModel>(`${this.SERVER_URL + 'todos'}`, todo);
+  }
+
 }

@@ -65,7 +65,7 @@ export class ToDoEffects {
     .pipe(
       ofType<CreateToDo>(CREATE_TODO),
       mergeMap(action =>
-        this.todosService.setTodos(action.payload)
+        this.todosService.createTodo(action.payload)
           .pipe(
             map(data => {
               console.log('Effects Post Http call success: ', data);

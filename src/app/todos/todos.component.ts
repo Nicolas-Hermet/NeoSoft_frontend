@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { Store, select, Action } from '@ngrx/store';
 import { ToDoState } from '../redux/todo.state';
 import ActionWithPayload from '../redux/ActionWithPayload';
-import { CHANGE_TODO, GET_TODO } from '../redux/todo.actions';
+import { CHANGE_TODO, GET_TODO, CREATE_TODO } from '../redux/todo.actions';
 
 @Component({
   selector: 'app-todos',
