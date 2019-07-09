@@ -4,7 +4,7 @@ import { TodoModel } from '../models/todo.model';
 
 export const GET_TODO = '[ToDo] GET_TODO';
 export const GET_TODO_SUCCESS = '[ToDo] GET_TODO_SUCCESS';
-export const GET_TODO_ERROR = '[ToDo] GET_TODO_ERROR';
+export const TODO_ERROR = '[ToDo] TODO_ERROR';
 
 export const CHANGE_TODO = '[ToDo] CHANGE_TODO';
 export const CHANGE_TODO_SUCCESS = '[ToDo] CHANGE_TODO_SUCCESS';

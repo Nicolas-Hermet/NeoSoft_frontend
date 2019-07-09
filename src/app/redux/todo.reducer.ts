@@ -40,7 +40,7 @@ export function ToDoReducer(state: ToDoState = initialState,
             ...state
         });
 
-      case ToDoActions.GET_TODO_ERROR:
+      case ToDoActions.TODO_ERROR:
           return ({
               ...state,
           });

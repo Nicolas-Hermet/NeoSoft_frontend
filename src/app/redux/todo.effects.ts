@@ -11,7 +11,7 @@ import {
   GetToDo,
   GetToDoSuccess,
   GET_TODO,
-  GET_TODO_ERROR,
+  TODO_ERROR,
   ToDoError,
   ChangeToDoSuccess
 } from './todo.actions';
@@ -32,7 +32,7 @@ export class ToDoEffects {
         }),
         catchError(error => {
           console.error('Http Call Error: ', error);
-          return of(new ToDoError(GET_TODO_ERROR, error.message));
+          return of(new ToDoError(TODO_ERROR, error.message));
         })
       )
     )
@@ -51,7 +51,11 @@ export class ToDoEffects {
             }),
             catchError(error => {
               console.error('Http Call Error: ', error);
-              return of(new ToDoError(GET_TODO_ERROR, error.message));
+              return of(new ToDoError(TODO_ERROR, error.message));
+            })
+          )
+      )
+    );
             })
           )
       )
