@@ -40,6 +40,17 @@ export function ToDoReducer(state: ToDoState = initialState,
             ...state
         });
 
+      case ToDoActions.CREATE_TODO:
+        return ({
+            ...state,
+        });
+
+        case ToDoActions.CREATE_TODO_SUCCESS:
+        return ({
+            ...state,
+            todos: [...state.todos, (action as ActionWithPayload<TodoModel>).payload],
+        });
+
       case ToDoActions.TODO_ERROR:
           return ({
               ...state,
