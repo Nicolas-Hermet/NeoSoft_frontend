@@ -66,6 +66,16 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.store.dispatch(todoAction);
   }
 
+  createToDo() {
+    const title = this.todoForm.get('title').value;
+    const description = this.todoForm.get('description').value;
+    const todoAction: ActionWithPayload<TodoModel> = {
+      type: CREATE_TODO,
+      payload: { title, isDone: false, description } as TodoModel
+    };
+    this.store.dispatch(todoAction);
+  }
+
   ngOnDestroy() {
       this.toDoSubscription.unsubscribe();
   }
