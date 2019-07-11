@@ -9,6 +9,7 @@ import { Store, select, Action } from '@ngrx/store';
 import { ToDoState } from '../redux/todo.state';
 import ActionWithPayload from '../redux/ActionWithPayload';
 import { CHANGE_TODO, GET_TODO, CREATE_TODO } from '../redux/todo.actions';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todos',
@@ -22,7 +23,20 @@ export class TodosComponent implements OnInit, OnDestroy {
   toDoState$: Observable<ToDoState>;
   toDoSubscription: Subscription;
 
-  constructor(private store: Store<ToDoState>) {
+
+  todoForm: FormGroup;
+  titleCtrl: FormControl;
+  descriptionCtrl: FormControl;
+  title: string;
+  description: string;
+
+  constructor(private store: Store<ToDoState>, fb: FormBuilder) {
+    this.titleCtrl = fb.control('', [Validators.required]);
+    this.descriptionCtrl = fb.control('');
+    this.todoForm = fb.group({
+      title: this.titleCtrl,
+      description: this.descriptionCtrl
+    });
   }
 
   ngOnInit() {

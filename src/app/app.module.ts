@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { ToDoReducer } from './redux/todo.reducer';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { ToDoEffects } from './redux/todo.effects';
 
@@ -35,7 +35,9 @@ import { TodoComponent } from './todos/todo/todo.component';
     HttpClientModule,
     InMemoryWebApiModule.forRoot(DataService),
     StoreModule.forRoot({ todos: ToDoReducer, router: routerReducer }),
-    EffectsModule.forRoot([ToDoEffects])
+    EffectsModule.forRoot([ToDoEffects]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
