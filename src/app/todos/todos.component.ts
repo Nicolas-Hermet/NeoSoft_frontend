@@ -52,8 +52,8 @@ export class TodosComponent implements OnInit, OnDestroy {
 
 
   changeTodo(i: number) {
-    const todo = this.todos[i];
-    todo.isDone = !this.todos[i].isDone;
+    const todo = this.todos.find( x => x.id === i);
+    todo.isDone = !todo.isDone;
     const todoAction: ActionWithPayload<TodoModel> = {
       type: CHANGE_TODO,
       payload:  {
