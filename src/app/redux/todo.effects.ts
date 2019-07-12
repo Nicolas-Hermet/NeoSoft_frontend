@@ -69,7 +69,7 @@ export class ToDoEffects {
           .pipe(
             map(data => {
               console.log('Effects Post Http call success: ', data);
-              return new CreateToDoSuccess(action.payload as TodoModel);
+              return new CreateToDoSuccess(data as TodoModel);
             }),
             catchError(error => {
               console.error('Http Call Error: ', error);
