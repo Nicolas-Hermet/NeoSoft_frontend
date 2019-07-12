@@ -4,10 +4,13 @@ import { TodoModel } from '../models/todo.model';
 
 export const GET_TODO = '[ToDo] GET_TODO';
 export const GET_TODO_SUCCESS = '[ToDo] GET_TODO_SUCCESS';
-export const GET_TODO_ERROR = '[ToDo] GET_TODO_ERROR';
+export const TODO_ERROR = '[ToDo] TODO_ERROR';
 
 export const CHANGE_TODO = '[ToDo] CHANGE_TODO';
 export const CHANGE_TODO_SUCCESS = '[ToDo] CHANGE_TODO_SUCCESS';
+
+export const CREATE_TODO = '[ToDo] CREATE_TODO';
+export const CREATE_TODO_SUCCESS = '[ToDo] CREATE_TODO_SUCCESS';
 
 export class GetToDo implements Action {
     readonly type = GET_TODO;
@@ -52,5 +55,24 @@ export class ToDoError implements Action {
     }
 }
 
+export class CreateToDo implements ActionWithPayload<TodoModel> {
+  readonly type = CREATE_TODO;
+  payload: TodoModel;
 
-export type All = GetToDo | GetToDoSuccess | ToDoError | ChangeToDo | ChangeToDoSuccess;
+  constructor(payload: TodoModel) {
+      this.payload = payload;
+  }
+}
+
+export class CreateToDoSuccess implements ActionWithPayload<TodoModel> {
+  readonly type = CREATE_TODO_SUCCESS;
+  payload: TodoModel;
+
+  constructor(payload: TodoModel) {
+      this.payload = payload;
+  }
+}
+
+
+
+export type All = GetToDo | GetToDoSuccess | ToDoError | ChangeToDo | ChangeToDoSuccess | CreateToDo | CreateToDoSuccess;
