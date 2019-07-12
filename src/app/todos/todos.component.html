@@ -1,9 +1,39 @@
 <div class="container">
-  <mat-card class="todo" *ngFor="let todo of todos; index as i" [ngClass]="{'done': todo.isDone, 'bottom': todo.isDone}">
+  <mat-card class="todo">
+
+    <form (ngSubmit)="createToDo(); todoForm.reset()" [formGroup]="todoForm">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-form-field appearance="standard">
+            <mat-label>Create a todo</mat-label>
+            <input matInput placeholder="Title" formControlName="title" required class="Input">
+          </mat-form-field>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field *ngIf="!todoForm.invalid" class="todo">
+          <textarea matInput placeholder="Description" formControlName="description" cols="30" rows="3"></textarea>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions *ngIf="!todoForm.invalid">
+        <div>
+          <button mat-raised-button color="primary" type="submit" [disabled]="todoForm.invalid" (click)="createToDo(); todoForm.reset()">Add</button>
+          <button mat-button (click)="todoForm.reset()">Cancel</button>
+        </div>
+      </mat-card-actions>
+    </form>
+
+  </mat-card>
+<!-- </div>
+
+<div class="container"> -->
+  <mat-card class="todo" *ngFor="let todo of todos.reverse(); index as i" [ngClass]="{'done': todo.isDone, 'bottom': todo.isDone}">
     <mat-card-header>
       <mat-card-title style="cursor: pointer;">
-        <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(i)" labelPosition='after'></mat-checkbox>
-        <span [routerLink]="['/todo', todo.id]">&nbsp;{{ todo.title }}&nbsp;</span>
+        <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(todo.id)" labelPosition='after'></mat-checkbox>
+        <span [routerLink]="['/todo', todo.id]">&nbsp;{{todo.title }}&nbsp;</span>
       </mat-card-title>
     </mat-card-header>
   </mat-card>

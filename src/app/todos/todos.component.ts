@@ -8,7 +8,8 @@ import { map } from 'rxjs/operators';
 import { Store, select, Action } from '@ngrx/store';
 import { ToDoState } from '../redux/todo.state';
 import ActionWithPayload from '../redux/ActionWithPayload';
-import { CHANGE_TODO, GET_TODO } from '../redux/todo.actions';
+import { CHANGE_TODO, GET_TODO, CREATE_TODO } from '../redux/todo.actions';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todos',
@@ -22,7 +23,20 @@ export class TodosComponent implements OnInit, OnDestroy {
   toDoState$: Observable<ToDoState>;
   toDoSubscription: Subscription;
 
-  constructor(private store: Store<ToDoState>) {
+
+  todoForm: FormGroup;
+  titleCtrl: FormControl;
+  descriptionCtrl: FormControl;
+  title: string;
+  description: string;
+
+  constructor(private store: Store<ToDoState>, fb: FormBuilder) {
+    this.titleCtrl = fb.control('', [Validators.required]);
+    this.descriptionCtrl = fb.control('');
+    this.todoForm = fb.group({
+      title: this.titleCtrl,
+      description: this.descriptionCtrl
+    });
   }
 
   ngOnInit() {
@@ -38,8 +52,8 @@ export class TodosComponent implements OnInit, OnDestroy {
 
 
   changeTodo(i: number) {
-    const todo = this.todos[i];
-    todo.isDone = !this.todos[i].isDone;
+    const todo = this.todos.find( x => x.id === i);
+    todo.isDone = !todo.isDone;
     const todoAction: ActionWithPayload<TodoModel> = {
       type: CHANGE_TODO,
       payload:  {
@@ -48,6 +62,16 @@ export class TodosComponent implements OnInit, OnDestroy {
         isDone: todo.isDone,
         description: todo.description
       }
+    };
+    this.store.dispatch(todoAction);
+  }
+
+  createToDo() {
+    const title = this.todoForm.get('title').value;
+    const description = this.todoForm.get('description').value;
+    const todoAction: ActionWithPayload<TodoModel> = {
+      type: CREATE_TODO,
+      payload: { title, isDone: false, description } as TodoModel
     };
     this.store.dispatch(todoAction);
   }

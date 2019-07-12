@@ -11,9 +11,12 @@ import {
   GetToDo,
   GetToDoSuccess,
   GET_TODO,
-  GET_TODO_ERROR,
+  TODO_ERROR,
   ToDoError,
-  ChangeToDoSuccess
+  ChangeToDoSuccess,
+  CreateToDo,
+  CREATE_TODO,
+  CreateToDoSuccess
 } from './todo.actions';
 import { TodosService } from '../services/todos.service';
 
@@ -32,7 +35,7 @@ export class ToDoEffects {
         }),
         catchError(error => {
           console.error('Http Call Error: ', error);
-          return of(new ToDoError(GET_TODO_ERROR, error.message));
+          return of(new ToDoError(TODO_ERROR, error.message));
         })
       )
     )
@@ -51,7 +54,26 @@ export class ToDoEffects {
             }),
             catchError(error => {
               console.error('Http Call Error: ', error);
-              return of(new ToDoError(GET_TODO_ERROR, error.message));
+              return of(new ToDoError(TODO_ERROR, error.message));
+            })
+          )
+      )
+    );
+
+  @Effect()
+  CreateToDos$: Observable<Action> = this.action$
+    .pipe(
+      ofType<CreateToDo>(CREATE_TODO),
+      mergeMap(action =>
+        this.todosService.createTodo(action.payload)
+          .pipe(
+            map(data => {
+              console.log('Effects Post Http call success: ', data);
+              return new CreateToDoSuccess(data as TodoModel);
+            }),
+            catchError(error => {
+              console.error('Http Call Error: ', error);
+              return of(new ToDoError(TODO_ERROR, error.message));
             })
           )
       )
