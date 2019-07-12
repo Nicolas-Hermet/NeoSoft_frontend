@@ -20,7 +20,6 @@ export class DataService implements InMemoryDbService {
   }
 
   genId(todos: Array<TodoModel>): number {
-    console.log('on passe dans le générateur d\'ID');
     return todos.length > 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
   }
 }
