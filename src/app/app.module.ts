@@ -20,12 +20,14 @@ import { ToDoEffects } from './redux/todo.effects';
 
 import { routerReducer } from '@ngrx/router-store';
 import { TodoComponent } from './todos/todo/todo.component';
+import { ReversePipe } from './pipes/reverse.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     TodosComponent,
-    TodoComponent
+    TodoComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
