@@ -33,7 +33,12 @@
     <mat-card-header>
       <mat-card-title style="cursor: pointer;">
         <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(todo.id)" labelPosition='after'></mat-checkbox>
-        <span [routerLink]="['/todo', todo.id]">&nbsp;{{todo.title }}&nbsp;</span>
+        <span [routerLink]="['/todo', todo.id]">
+          &nbsp;{{todo.title }}&nbsp;
+          <mat-icon *ngIf="todo.description" aria-hidden="false" aria-label="Todo description" class="description">
+            more_horiz
+          </mat-icon>
+        </span>
       </mat-card-title>
     </mat-card-header>
   </mat-card>
