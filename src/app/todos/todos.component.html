@@ -29,7 +29,7 @@
 <!-- </div>
 
 <div class="container"> -->
-  <mat-card class="todo" *ngFor="let todo of todos.reverse(); index as i" [ngClass]="{'done': todo.isDone, 'bottom': todo.isDone}">
+  <mat-card class="todo" *ngFor="let todo of todos | reverse ; index as i" [ngClass]="{'done': todo.isDone, 'bottom': todo.isDone}">
     <mat-card-header>
       <mat-card-title style="cursor: pointer;">
         <mat-checkbox [checked]="todo.isDone" (change)="changeTodo(todo.id)" labelPosition='after'></mat-checkbox>
